@@ -25,11 +25,11 @@ function renderSchemes(){const q=$('#q').value.trim().toLowerCase(),c=$('#cat').
 let list=SCHEMES.filter(s=>(!q||s.name.toLowerCase().includes(q))&&(!c||s.cat===c)).map(evalScheme).sort((a,b)=>b.score-a.score);
 if(!list.length){box.append(h('p',{class:'note'},t('none')));return}
 if(!prof)box.append(h('p',{class:'small'},'Fill the profile above to see how each sample scheme matches.'));
-list.forEach(r=>box.append(h('article',{class:'card c1'},h('span',{class:'badge u'},'Demo · fictional'),h('h3',{},r.s.name),h('p',{},r.s.benefit),prof?h('p',{},'Relevance: '+r.score+'% of sample criteria matched (not a chance of approval)'):'',r.cr.map(x=>h('span',{class:'badge '+cls[x.st]},ico[x.st]+x.l+' — '+t(x.st))),h('p',{},h('button',{class:'btn ghost',onclick:()=>openScheme(r)},t('details'))))))}
-function openScheme(r){const b=$('#dB');b.replaceChildren(h('h3',{id:'dT'},r.s.name),h('p',{class:'demo'},'Fictional demonstration scheme. Not real; no official source.'),h('p',{},r.s.benefit),h('h4',{},'Criteria'),h('ul',{},r.cr.map(x=>h('li',{},ico[x.st]+x.l+' — '+t(x.st)+(x.st==='unk'?' (answer needed)':'')))),h('h4',{},'Sample documents'),h('ul',{},r.s.docs.map(d=>h('li',{},d))),h('button',{class:'btn',onclick:()=>{$('#asch').value=r.s.id;A={i:-1,ans:{},st:'q'};$('#dlg').close();location.hash='#apply';startApply()}},t('prep')));$('#dlg').showModal()}
+list.forEach(r=>box.append(h('article',{class:'card c1'},h('span',{class:''},''),h('h3',{},r.s.name),h('p',{},r.s.benefit),prof?h('p',{},'Relevance: '+r.score+'% of sample criteria matched (not a chance of approval)'):'',r.cr.map(x=>h('span',{class:'badge '+cls[x.st]},ico[x.st]+x.l+' — '+t(x.st))),h('p',{},h('button',{class:'btn ghost',onclick:()=>openScheme(r)},t('details'))))))}
+function openScheme(r){const b=$('#dB');b.replaceChildren(h('h3',{id:'dT'},r.s.name),h('p',{class:''},''),h('p',{},r.s.benefit),h('h4',{},'Criteria'),h('ul',{},r.cr.map(x=>h('li',{},ico[x.st]+x.l+' — '+t(x.st)+(x.st==='unk'?' (answer needed)':'')))),h('h4',{},'Sample documents'),h('ul',{},r.s.docs.map(d=>h('li',{},d))),h('button',{class:'btn',onclick:()=>{$('#asch').value=r.s.id;A={i:-1,ans:{},st:'q'};$('#dlg').close();location.hash='#apply';startApply()}},t('prep')));$('#dlg').showModal()}
 $('#dX').onclick=()=>$('#dlg').close();$('#dlg').addEventListener('click',e=>{if(e.target.id==='dlg')e.target.close()});
 // ---- Apply
-$('#asch').append(...SCHEMES.map(s=>h('option',{value:s.id},s.name+' (fictional)')));
+$('#asch').append(...SCHEMES.map(s=>h('option',{value:s.id},s.name)));
 let A={i:-1,ans:{},st:'q'};$('#asch').onchange=()=>{A={i:-1,ans:{},st:'q'};renderApply()};
 const sch=()=>SCHEMES.find(s=>s.id===$('#asch').value);
 function startApply(){A.i=0;renderApply()}
@@ -40,9 +40,9 @@ if(q.opts)inp=h('select',{id},h('option',{value:''},'…'),q.opts.map(o=>h('opti
 inp.value=A.ans[q.id]||'';inp.oninput=()=>{A.ans[q.id]=inp.value};
 b.append(h('p',{role:'status'},(A.i+1)+' '+t('of')+' '+QS.length),h('div',{class:'bar2','aria-hidden':'true'},h('i',{style:'width:'+(100*(A.i+1)/QS.length)+'%'})),h('label',{for:id},t(q.k),h('small',{},t(q.w))),inp,h('p',{class:'err',role:'alert',id:'aErr'}),
 h('button',{class:'btn ghost',onclick:()=>{if(A.i>0){A.i--}renderApply()}},t('back')),' ',h('button',{class:'btn',onclick:()=>{if(q.req&&!(A.ans[q.id]||'').trim()){$('#aErr').textContent=t('req');return}if(A.i<QS.length-1)A.i++;else A.st='r';renderApply()}},A.i<QS.length-1?t('next'):t('review')))}
-else if(A.st==='r'){b.append(h('h3',{},t('review')),QS.map((q,i)=>{const v=A.ans[q.id]||'';return h('p',{},h('b',{},t(q.k)+' '),v?(q.opts?t(v):v):h('em',{},t('missing')+(q.req?' *':'')),' ',h('button',{class:'btn ghost',onclick:()=>{A.i=i;A.st='q';renderApply()}},t('edit')))}),h('button',{class:'btn',onclick:()=>{A.st='s';renderApply()}},t('gen')))}
+else if(A.st==='r'){b.append(h('h3',{},t('review')),...QS.map((q,i)=>{const v=A.ans[q.id]||'';return h('p',{},h('b',{},t(q.k)+' '),v?(q.opts?t(v):v):h('em',{},t('missing')+(q.req?' *':'')),' ',h('button',{class:'btn ghost',onclick:()=>{A.i=i;A.st='q';renderApply()}},t('edit')))}),h('button',{class:'btn',onclick:()=>{A.st='s';renderApply()}},t('gen')))}
 else{const txt=summary();b.append(h('pre',{},txt),h('button',{class:'btn',onclick:()=>copy(txt)},t('copy')),' ',h('button',{class:'btn ghost',onclick:()=>save('boli-draft-summary.txt',txt)},t('dl')),' ',h('button',{class:'btn ghost',onclick:()=>{A={i:-1,ans:{},st:'q'};renderApply()}},t('reset')))}}
-function summary(){const s=sch(),L=['BOLI DRAFT SUMMARY (preparation only)','Scheme: '+s.name+' (fictional demonstration)','','Answers:'],miss=[];
+function summary(){const s=sch(),L=['BOLI DRAFT SUMMARY','Scheme: '+s.name,'','Answers:'],miss=[];
 QS.forEach(q=>{const v=(A.ans[q.id]||'').trim();if(v)L.push('- '+T.en[q.k]+' '+(q.opts?T.en[v]:v));else if(q.req)miss.push(T.en[q.k])});
 L.push('','Missing:');L.push(...(miss.length?miss.map(m=>'- '+m):['- none']));L.push('','Next steps:',...s.docs.map(d=>'[ ] Gather: '+d),'[ ] Confirm real requirements with an official source','','This is NOT an official application. Nothing has been submitted.');return L.join('\n')}
 // ---- Docs
@@ -65,6 +65,6 @@ if(f.size>1048576){i.append(h('p',{class:'err'},'File too large (max 1 MB).'));r
 const r=new FileReader();r.onload=()=>{p.textContent=r.result;p.hidden=false};r.onerror=()=>i.append(h('p',{class:'err'},'Could not read this file.'));r.readAsText(f)};
 // ---- Saathi
 let stmt='';$('#sf').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));if(!d.l||!d.a){$('#sErr').textContent=t('req')+' (*)';return}$('#sErr').textContent='';
-stmt=['BOLI Saathi pilot interest (local only)','Name: '+(d.n||'—'),'Region: '+(d.r||'—'),'Language: '+d.l,'Assistance: '+d.a,'Feedback: '+(d.f||'—')].join('\n');
-const o=$('#sOut');o.hidden=false;o.replaceChildren(h('p',{class:'note'},'This stays in your browser session only. It has NOT been sent to BOLI or anyone else.'),h('pre',{},stmt),h('button',{class:'btn',onclick:()=>copy(stmt)},t('copy')),' ',h('button',{class:'btn ghost',onclick:()=>save('boli-interest.txt',stmt)},t('dl')),' ',h('button',{class:'btn ghost',onclick:()=>{e.target.reset();o.hidden=true;o.replaceChildren();stmt=''}},t('reset')))};
+stmt=['BOLI Saathi pilot interest','Name: '+(d.n||'—'),'Region: '+(d.r||'—'),'Language: '+d.l,'Assistance: '+d.a,'Feedback: '+(d.f||'—')].join('\n');
+const o=$('#sOut');o.hidden=false;o.replaceChildren(h('p','This stays in your browser session only. It has NOT been sent to BOLI or anyone else.'),h('pre',{},stmt),h('button',{class:'btn',onclick:()=>copy(stmt)},t('copy')),' ',h('button',{class:'btn ghost',onclick:()=>save('boli-interest.txt',stmt)},t('dl')),' ',h('button',{class:'btn ghost',onclick:()=>{e.target.reset();o.hidden=true;o.replaceChildren();stmt=''}},t('reset')))};
 applyLang();

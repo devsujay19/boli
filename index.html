@@ -12,8 +12,8 @@
     <a class="skip" href="#main">Skip to content</a>
     <header class="top">
         <div class="bar">
-            <a href="#home" class="brand"><img class="logo" src="assets/boli-logo.svg" alt="BOLI logo"
-                    height="36"><b>BOLI</b></a>
+            <a href="#home" class="brand"><img class="logo" src="./Black_White_Minimalist_Professional_Initial_Logo.png"
+                    alt="BOLI — Bharat Open Language Interface"></a>
             <button id="menuBtn" class="menu" aria-expanded="false" aria-controls="nav" aria-label="Menu">☰</button>
             <nav id="nav" aria-label="Main">
                 <a href="#discover" data-i18n="nav_d">Discover Schemes</a><a href="#apply" data-i18n="nav_a">Apply with
@@ -129,21 +129,21 @@
             <div class="two">
                 <article class="panel">
                     <h3>Original text</h3>
-                    <pre id="orig">NOTICE (SAMPLE) — Sample Learning Grant
-Applicants must submit Form A with proof of age and proof of enrolment by 30 November 2099.
-Late forms will not be considered. Verification will take place in the first week of December 2099.
+                    <pre id="orig">NOTICE — Sample Learning Grant
+Applicants must submit Form A with proof of age and proof of enrolment by 30 November 2026.
+Late forms will not be considered. Verification will take place in the first week of December 2026.
 Incomplete forms will be returned.</pre>
                 </article>
                 <article class="panel">
                     <h3>In plain language</h3>
                     <p>You must send Form A with proof of your age and proof that you are enrolled. The last day is
-                        <b>30 November 2099</b>. Check happens in the first week of December. If anything is missing,
+                        <b>30 November 2026</b>. Check happens in the first week of December. If anything is missing,
                         your form comes back.
                     </p>
                     <h4>Key dates</h4>
                     <ul>
-                        <li>Deadline: 30 Nov 2099</li>
-                        <li>Verification: 1st week of Dec 2099</li>
+                        <li>Deadline: 30 Nov 2026</li>
+                        <li>Verification: 1st week of Dec 2026</li>
                     </ul>
                     <h4>Checklist</h4>
                     <ul id="chk" class="nolist"></ul>
@@ -157,7 +157,7 @@ Incomplete forms will be returned.</pre>
                     data-i18n="stop" disabled>Stop Reading</button></p>
             <p class="small" id="ttsMsg" role="status">Voice availability depends on your browser and operating system.
             </p>
-            <div class="panel"><label>Choose a local file (.txt only is read)<input type="file" id="file"></label>
+            <div class="panel"><label>Choose a local file<input type="file" id="file"></label>
                 <div id="finfo"></div>
                 <pre id="ftext" hidden></pre>
             </div>
@@ -179,31 +179,32 @@ Incomplete forms will be returned.</pre>
                 <li>Organise documents</li>
                 <li>Plan next steps</li>
             </ol>
-            <table>
-                <caption>Illustrative schedule</caption>
-                <tr>
-                    <th>Day</th>
-                    <th>Time</th>
-                    <th>Activity</th>
-                </tr>
-                <tr>
-                    <td>Mon</td>
-                    <td>10:00–13:00</td>
-                    <td>Scheme information desk</td>
-                </tr>
-                <tr>
-                    <td>Wed</td>
-                    <td>14:00–17:00</td>
-                    <td>Document help</td>
-                </tr>
-                <tr>
-                    <td>Sat</td>
-                    <td>10:00–12:00</td>
-                    <td>Notice &amp; deadline clinic</td>
-                </tr>
-            </table>
-            <p class="note">This schedule is illustrative and does not represent confirmed visits, locations, or service
-                availability.</p>
+            <div class="table-wrap">
+                <table>
+                    <caption>Time &amp; Schedule</caption>
+                    <tr>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Activity</th>
+                    </tr>
+                    <tr>
+                        <td>Mon</td>
+                        <td>10:00–13:00</td>
+                        <td>Scheme information desk</td>
+                    </tr>
+                    <tr>
+                        <td>Wed</td>
+                        <td>14:00–17:00</td>
+                        <td>Document help</td>
+                    </tr>
+                    <tr>
+                        <td>Sat</td>
+                        <td>10:00–12:00</td>
+                        <td>Notice &amp; deadline clinic</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="width: 100%; height: 35px;"></div>
             <form id="sf" class="panel" novalidate>
                 <h3>Express interest in a future pilot</h3>
                 <div class="grid"><label>Preferred name (optional)<input name="n"></label><label>Broad region
@@ -226,8 +227,10 @@ Incomplete forms will be returned.</pre>
             <div id="sOut" class="panel" hidden></div>
         </section>
     </main>
-    <footer><img class="logo" src="assets/boli-logo.svg" alt="" height="28"> BOLI — frontend demonstration. No data is
-        sent anywhere.</footer>
+    <footer> <a href="#home"><img
+                style="width: 100px; height: auto; justify-content:center; vertical-align: middle; align-items: center;"
+                src="./Black_White_Minimalist_Professional_Initial_Logo.png"
+                alt="BOLI — Bharat Open Language Interface"></a></footer>
     <dialog id="dlg" aria-labelledby="dT"><button id="dX" class="x" aria-label="Close">×</button>
         <div id="dB"></div>
     </dialog>
