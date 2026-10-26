@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>BOLI — The People's Access Network</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="top">
+        <div class="bar">
+            <a href="#home" class="brand"><img class="logo" src="assets/boli-logo.svg" alt="BOLI logo"
+                    height="36"><b>BOLI</b></a>
+            <button id="menuBtn" class="menu" aria-expanded="false" aria-controls="nav" aria-label="Menu">☰</button>
+            <nav id="nav" aria-label="Main">
+                <a href="#discover" data-i18n="nav_d">Discover Schemes</a><a href="#apply" data-i18n="nav_a">Apply with
+                    BOLI</a><a href="#docs" data-i18n="nav_u">Understand Documents</a><a href="#saathi"
+                    data-i18n="nav_s">BOLI Saathi</a>
+                <select id="lang" aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                </select>
+                <a class="btn" href="#discover" data-i18n="start">Get Started</a>
+            </nav>
+        </div>
+    </header>
+    <main id="main">
+        <section id="home" class="hero">
+            <div>
+                <p></p>
+                <h1>Public services should speak your language.</h1>
+                <p class="lead">Discover schemes, understand documents, and prepare for applications
+                    with a simpler, more human approach to public services.</p>
+                <p><a class="btn" href="#discover" data-i18n="explore">Explore Schemes</a> <a class="btn ghost"
+                        href="#how" data-i18n="how">See How BOLI Works</a></p>
+            </div>
+            <svg viewBox="0 0 320 300" role="img"
+                aria-label="Illustration: people connected to public services through speech bubbles">
+                <circle cx="110" cy="110" r="90" fill="#B8F2D0" />
+                <rect x="150" y="60" width="140" height="120" rx="24" fill="#7657E8" />
+                <circle cx="230" cy="215" r="55" fill="#FFD166" />
+                <path d="M40 250q70-90 140 0z" fill="#FF7867" />
+                <circle cx="110" cy="150" r="30" fill="#29245C" />
+                <rect x="170" y="90" width="100" height="10" rx="5" fill="#FFFCF7" />
+                <rect x="170" y="115" width="70" height="10" rx="5" fill="#FFFCF7" />
+            </svg>
+        </section>
+        <section id="how" class="wrap">
+            <h2>How it works</h2>
+            <ol class="steps">
+                <li>Tell BOLI a little about what you need.</li>
+                <li>Explore relevant information and requirements.</li>
+                <li>Prepare your next steps with greater clarity.</li>
+            </ol>
+            <div class="cards4"><a href="#discover" class="card c1">
+                    <h3 data-i18n="nav_d">Discover Schemes</h3>
+                    <p>Guided profile and transparent matching.</p>
+                </a><a href="#apply" class="card c2">
+                    <h3 data-i18n="nav_a">Apply with BOLI</h3>
+                    <p>Prepare answers step by step.</p>
+                </a><a href="#docs" class="card c3">
+                    <h3 data-i18n="nav_u">Understand Documents</h3>
+                    <p>Plain-language notice reader.</p>
+                </a><a href="#saathi" class="card c4">
+                    <h3 data-i18n="nav_s">BOLI Saathi</h3>
+                    <p>A proposed community outreach service.</p>
+                </a></div>
+        </section>
+
+        <section id="discover" class="wrap alt">
+            <h2 data-i18n="nav_d">Discover Schemes</h2>
+            <form id="pf" novalidate>
+                <div class="grid">
+                    <label>Age range *<select name="age">
+                            <option value="">Choose…</option>
+                            <option>under 16</option>
+                            <option>16-25</option>
+                            <option>26-59</option>
+                            <option>60+</option>
+                        </select><small>Many schemes have age limits.</small></label>
+                    <label>Occupation *<select name="occ">
+                            <option value="">Choose…</option>
+                            <option value="student">Student</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="selfemp">Self-employed</option>
+                            <option value="employed">Employed</option>
+                            <option value="retired">Retired</option>
+                        </select><small>Some schemes target specific work.</small></label>
+                    <label>Area type (optional)<select name="area">
+                            <option value="">Prefer not to say</option>
+                            <option value="rural">Rural</option>
+                            <option value="urban">Urban</option>
+                        </select></label>
+                    <label class="chk"><input type="checkbox" id="incOn"> Add income bracket (optional)</label>
+                    <label id="incW" hidden>Income bracket<select name="inc">
+                            <option value="">Unknown</option>
+                            <option value="low">Low</option>
+                            <option value="mid">Middle</option>
+                            <option value="high">Higher</option>
+                        </select></label>
+                </div>
+                <p class="err" id="pfErr" role="alert"></p>
+                <p class="small">Do not enter Aadhaar numbers, OTPs or bank details — BOLI never asks for them.</p>
+                <button class="btn" type="submit" data-i18n="find">Find schemes</button> <button class="btn ghost"
+                    type="reset" id="pfReset" data-i18n="reset">Reset</button>
+            </form>
+            <div class="tools"><input id="q" type="search" placeholder="Search schemes"
+                    aria-label="Search schemes"><select id="cat" aria-label="Category">
+                    <option value="">All categories</option>
+                    <option>education</option>
+                    <option>agriculture</option>
+                    <option>elders</option>
+                    <option>business</option>
+                </select><button class="btn ghost" id="clr">Clear filters</button></div>
+            <div id="results" class="cards3" aria-live="polite"></div>
+        </section>
+
+        <section id="apply" class="wrap">
+            <h2 data-i18n="nav_a">Apply with BOLI</h2>
+            <label>Choose a demonstration scheme<select id="asch"></select></label>
+            <div id="applyBox" class="panel"></div>
+        </section>
+
+        <section id="docs" class="wrap alt">
+            <h2 data-i18n="nav_u">Understand Documents</h2>
+            <div class="two">
+                <article class="panel">
+                    <h3>Original text</h3>
+                    <pre id="orig">NOTICE (SAMPLE) — Sample Learning Grant
+Applicants must submit Form A with proof of age and proof of enrolment by 30 November 2099.
+Late forms will not be considered. Verification will take place in the first week of December 2099.
+Incomplete forms will be returned.</pre>
+                </article>
+                <article class="panel">
+                    <h3>In plain language</h3>
+                    <p>You must send Form A with proof of your age and proof that you are enrolled. The last day is
+                        <b>30 November 2099</b>. Check happens in the first week of December. If anything is missing,
+                        your form comes back.
+                    </p>
+                    <h4>Key dates</h4>
+                    <ul>
+                        <li>Deadline: 30 Nov 2099</li>
+                        <li>Verification: 1st week of Dec 2099</li>
+                    </ul>
+                    <h4>Checklist</h4>
+                    <ul id="chk" class="nolist"></ul>
+                    <div class="bar2" aria-hidden="true"><i id="pbar"></i></div>
+                    <p id="pct" aria-live="polite"></p>
+                    <p class="small">Ticks are your own tracking, not official verification.</p><button
+                        class="btn ghost" id="chkReset">Reset checklist</button>
+                </article>
+            </div>
+            <p><button class="btn" id="speak" data-i18n="read">Read Aloud</button> <button class="btn ghost" id="stop"
+                    data-i18n="stop" disabled>Stop Reading</button></p>
+            <p class="small" id="ttsMsg" role="status">Voice availability depends on your browser and operating system.
+            </p>
+            <div class="panel"><label>Choose a local file (.txt only is read)<input type="file" id="file"></label>
+                <div id="finfo"></div>
+                <pre id="ftext" hidden></pre>
+            </div>
+        </section>
+
+        <section id="saathi" class="wrap">
+            <h2 data-i18n="nav_s">BOLI Saathi</h2>
+            <p class="lead">A <b>proposed</b> community outreach service — not currently operational.</p>
+            <div class="cards4">
+                <div class="card c1">Understand benefit information</div>
+                <div class="card c2">Learn requirements</div>
+                <div class="card c3">Organise documents &amp; next steps</div>
+                <div class="card c4">Understand notices &amp; deadlines</div>
+            </div>
+            <h3>How a visit would work</h3>
+            <ol class="steps">
+                <li>Welcome &amp; listen</li>
+                <li>Explore options together</li>
+                <li>Organise documents</li>
+                <li>Plan next steps</li>
+            </ol>
+            <table>
+                <caption>Illustrative schedule</caption>
+                <tr>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Activity</th>
+                </tr>
+                <tr>
+                    <td>Mon</td>
+                    <td>10:00–13:00</td>
+                    <td>Scheme information desk</td>
+                </tr>
+                <tr>
+                    <td>Wed</td>
+                    <td>14:00–17:00</td>
+                    <td>Document help</td>
+                </tr>
+                <tr>
+                    <td>Sat</td>
+                    <td>10:00–12:00</td>
+                    <td>Notice &amp; deadline clinic</td>
+                </tr>
+            </table>
+            <p class="note">This schedule is illustrative and does not represent confirmed visits, locations, or service
+                availability.</p>
+            <form id="sf" class="panel" novalidate>
+                <h3>Express interest in a future pilot</h3>
+                <div class="grid"><label>Preferred name (optional)<input name="n"></label><label>Broad region
+                        (optional)<input name="r"></label>
+                    <label>Preferred language *<select name="l">
+                            <option value="">Choose…</option>
+                            <option>English</option>
+                            <option>हिन्दी</option>
+                        </select></label><label>Assistance of interest *<select name="a">
+                            <option value="">Choose…</option>
+                            <option>Scheme information</option>
+                            <option>Document help</option>
+                            <option>Notices &amp; deadlines</option>
+                        </select></label>
+                </div>
+                <label>Feedback (optional)<textarea name="f" rows="3"></textarea></label>
+                <p class="err" id="sErr" role="alert"></p><button class="btn" type="submit">Create interest
+                    statement</button>
+            </form>
+            <div id="sOut" class="panel" hidden></div>
+        </section>
+    </main>
+    <footer><img class="logo" src="assets/boli-logo.svg" alt="" height="28"> BOLI — frontend demonstration. No data is
+        sent anywhere.</footer>
+    <dialog id="dlg" aria-labelledby="dT"><button id="dX" class="x" aria-label="Close">×</button>
+        <div id="dB"></div>
+    </dialog>
+    <div id="toast" role="status"></div>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
